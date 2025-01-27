@@ -1,0 +1,37 @@
+import { NextRequest, NextResponse } from "next/server";
+import { candidateModel } from "@/models/candidate";
+import { Session } from "inspector/promises";
+import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../auth/[...nextauth]/options";
+
+
+export async function GET(request: NextRequest) {
+    const roll = request.url.substring(request.url.lastIndexOf('/') + 1)
+    console.log(roll)
+    const session = await getServerSession(authOptions);
+    const recruiterEmail = session?.user.email
+    console.log(recruiterEmail)
+
+    try {
+        const response = await candidateModel.findOneAndUpdate({ roll: roll }, { $set: { selected: true, selectedBy: recruiterEmail, interviewedBy: recruiterEmail, interviewed: true }, });
+        if (response) {
+            return NextResponse.json({
+                message: "Selected Successfully",
+                status: true,
+            })
+        }
+        else {
+            return NextResponse.json({
+                message: "Not Selected",
+                status: false
+            })
+        }
+    } catch (errror) {
+        return NextResponse.json({
+            message: "Not Selected",
+            status: false
+        })
+    }
+
+}

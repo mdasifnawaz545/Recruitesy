@@ -1,0 +1,80 @@
+"use client"
+import Button from '@/components/Button'
+import React, { Suspense, useEffect } from 'react'
+import Card from '@/components/Card'
+import { Domains } from '@/constants/domains'
+import CandidateCard from '@/components/CandidateCard'
+import { signOut, useSession } from 'next-auth/react'
+import { redirect, useRouter } from 'next/navigation'
+import DBConnection from '@/lib/database'
+import Search from '@/components/Search'
+import { User } from 'next-auth'
+import { useToast } from '@/hooks/use-toast'
+
+const page = () => {
+    const session = useSession();
+    console.log(session.data)
+    const currentUser: User = session?.data?.user as User;
+    const username: string = currentUser?.name as string;
+    //const session=useSession();
+    console.log("Frontend Authentication")
+
+    const handleFormLink = () => {
+        //Use origin of the deployed one once it is deployed.
+        let clip = "http://localhost:3000/home/formLink"
+        window.navigator.clipboard.writeText(clip);
+        toast({
+            title: "Copied",
+            description: "Link is Copied to the Clipboard"
+        })
+    }
+
+
+    const router = useRouter();
+    const { toast } = useToast();
+    const handleAttendance = () => {
+        router.push("/home/attendance")
+    }
+
+    const handleLogOut = async () => {
+        await signOut({callbackUrl:'/signin'})
+    }
+    
+
+    const user = {
+        user: {
+            username: "Md Asif Nawaz"
+        }
+    }
+    return (
+        <div className='w-full min-h-screen text-white flex flex-col text-sm gap-4 items-center justify-start py-2'>
+            <div className='md:px-0 w-full flex-col'>
+                <h1 className='text-md py-4 md:text-center mx-8 tracking-widest border-b-mywidth rounded-lg border-gray-600'>Welcome, {(username) || "Md Asif Nawaz"} to Recruitesy.</h1>
+                <div className='flex py-1'></div>
+                <div className='flex gap-4  w-full flex-wrap items-center justify-between '>
+                    <div className='flex items-center mt-2 justify-between md:pl-8 md:justify-center'>
+                        <h1 className='text-lg  text-bold text-center'>ALL DOMAINS</h1>
+                    </div>
+                    <div className='flex justify-center items-center gap-8'>
+                    </div>
+                    <div className='flex flex-wrap-reverse gap-4 items-center justify-center md:mr-11'>
+                        <Button buttonName={"Copy Form Link"} ownClass={'bg-green-500 hover:shadow-black'} func={handleFormLink} />
+                        <button onClick={() => { handleAttendance() }} className={`bg-blue-500 scale-110 text-white py-1 px-3 rounded-md flex items-center justify-center hover:drop-shadow-lg hover:opacity-90 `}>Attendance</button>
+                        <Button buttonName={"Log out"} ownClass={'bg-red-500 hover:shadow-black'} func={handleLogOut} />
+                    </div>
+
+                </div>
+            </div>
+            <div className='flex items-center justify-center gap-4 flex-wrap mt-4 w-full'>
+
+                {
+                    Domains.map((el: domainObject, index: number) => (<Card key={index} domainName={el.domain} logo={el.logo} dbDomainName={el.dbDomainName} />))
+                }
+
+            </div>
+
+        </div>
+    )
+}
+
+export default page
