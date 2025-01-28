@@ -4,7 +4,7 @@ import AuthProvider from "../context/AuthProvider";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster"
 import { Montserrat } from "next/font/google";
-import Head from 'next/head'
+
 
 const montserrat = Montserrat({
   weight: '400',
@@ -23,9 +23,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <link rel="icon" type="image./png" href="https://res.cloudinary.com/dpqdgcipi/image/upload/v1737957516/oahbsrjbebtxwtchrc18.png" />
-      </Head>
       <AuthProvider>
         <body className={`min-h-full min-w-full bg-gradient-to-r from-gray-900 to-[#000] ${montserrat.className}`}>
           <header>

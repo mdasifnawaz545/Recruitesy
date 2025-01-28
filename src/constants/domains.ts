@@ -1,49 +1,49 @@
 export const Domains = [
     {
         "domain": "Web Development",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1735463361/app-development_hztbxl.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068079/Web_Development_zk2tuo.png",
         "dbDomainName":"webdevelopment"
     },
     {
         "domain": "Android Development",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1735463361/app-settings_nboewg.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068071/App_Development_godcfu.png",
         "dbDomainName":"appdevelopment"
 
     },
     {
         "domain": "Java",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1735463361/java_pgzl8c.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068072/Java_yycsz2.png",
         "dbDomainName":"java"
 
     },
     {
         "domain": "Graphic Designing",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1735463361/graphic-designer_icz76d.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068071/GD_tz4x79.png",
         "dbDomainName":"graphicdesigning"
 
     },
     {
         "domain": "UI/UX",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1735463361/ux_y3rega.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068078/UX_wniuqp.png",
         "dbDomainName":"uiux"
 
     },
     {
         "domain": "IOT & Embedded",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1735463361/internet-of-things_y0cqza.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068072/IoT_Embedded_uzr0ao.png",
         "dbDomainName":"iot"
 
     },
     {
         "domain": "Game Development & AR/VR",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1735463361/game-development_bzrlud.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068079/VR_zgpy5o.png",
         "dbDomainName":"gamedevelopment"
 
     },
 
     {
         "domain": "Photography & Video Editing",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1735463989/camera_ljxpgb.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068078/Photo_Video_Editing_skm2al.png",
         "dbDomainName":"photography"
 
     },
@@ -51,46 +51,41 @@ export const Domains = [
 
     {
         "domain": "Marketing & PR",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1735463990/bullhorn_lvvvzb.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068078/Marketing_qwrlls.png",
         "dbDomainName":"marketing"
 
     },
     {
         "domain": "AI/ML",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1737086087/icons8-artificial-intelligence-48_gsxc5n.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068078/ML_kjebfo.png",
         "dbDomainName":"aiml"
         
     },
     {
         "domain": "Content Writing",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1737086087/icons8-content-writing-64_rurd2f.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068071/Content_Writing_jks1ww.png",
         "dbDomainName":"contentwriting"
 
     },
     {
         "domain": "Cyber Security (NEW)",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1737087627/icons8-cybersecurity-96_djatie.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068071/Cyber_Security_nqjcxo.png",
         "dbDomainName":"cybersecurity"
 
     },
     {
         "domain": "Cloud (NEW)",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1737086087/icons8-cloud-100_c3mgh5.png",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068071/Cloud_Computing_c9g5er.png",
         "dbDomainName":"cloud"
 
     },
     {
-        "domain": "Data Analytics (NEW)",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1737086087/icons8-data-analytics-64_w1qpts.png",
+        "domain": "Data Analytics",
+        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1738068071/Data_Analytics_bankfu.png",
         "dbDomainName":"dataanalytics"
 
     },
-    {
-        "domain": "Operation Team (NEW)",
-        "logo": "https://res.cloudinary.com/dpqdgcipi/image/upload/v1737086087/icons8-team-goal-48_dxnq1p.png",
-        "dbDomainName":"operation"
 
-    },
 
     
 

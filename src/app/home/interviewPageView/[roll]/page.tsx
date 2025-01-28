@@ -14,6 +14,8 @@ type params = {
 
 const Page = ({ params }: { params: Promise<params> }) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [nextLoading, setnextLoading] = useState<boolean>(true);
+    const [selectedLoading, setselectedLoading] = useState<boolean>(true);
     const [oneCandidate, setOneCandidate] = useState<candidate>()
     const routers = useRouter();
     //@ts-ignore
@@ -73,31 +75,134 @@ const Page = ({ params }: { params: Promise<params> }) => {
         <div className='w-full px-10 text-sm min-h-screen md:flex flex-wrap-reverse items-center justify-between p-0'>
             <div className='md:w-1/2 w-full flex flex-col items-center justify-between gap-4'>
                 <div className='w-full text-slate-100 h-full bg-transparent backdrop-blur-lg border-mywidth border-gray-600 rounded-lg p-4 leading-10 drop-shadow-lg text-sm'>
-                    {isLoading ? (
-                        <>
-                            <h1>Candidate Name - <Skeleton width={200} className="bg-gray-600" /></h1>
-                            <h1>Candidate Roll - <Skeleton width={100} className="bg-gray-600" /></h1>
-                            <h1>Candidate Branch - <Skeleton width={150} className="bg-gray-600" /></h1>
-                            <h1>Studying Year - <Skeleton width={50} className="bg-gray-600" /></h1>
-                            <h1>Domain Applied - <Skeleton width={150} className="bg-gray-600" /></h1>
-                            <h1>Resume Link - <Skeleton width={200} className="bg-gray-600" /></h1>
-                            <h1>Linkedin Link - <Skeleton width={200} className="bg-gray-600" /></h1>
-                            <h1>Github Link - <Skeleton width={200} className="bg-gray-600" /></h1>
-                            <h1>Interview By- <Skeleton width={200} className="bg-gray-600" /></h1>
-                        </>
-                    ) : (
-                        <>
-                            <h1>Candidate Name - <b>{`${oneCandidate?.name}`}</b></h1>
-                            <h1>Candidate Roll - <b>{oneCandidate?.roll}</b></h1>
-                            <h1>Candidate Branch - <b>{oneCandidate?.branch}</b></h1>
-                            <h1>Studying Year - <b>{oneCandidate?.yearOfStudy}</b></h1>
-                            <h1>Domain Applied - <b>{oneCandidate?.domain}</b></h1>
-                            <h1>Resume Link - <Link target='_blank' className='text-blue-500' href={`${oneCandidate?.links?.resume}`}>Resume Link</Link></h1>
-                            <h1>Linkedin Link - <Link target='_blank' className="text-blue-500" href={`${oneCandidate?.links?.linkedin}`}>Linkedin Link</Link></h1>
-                            <h1>Github Link - <Link target='_blank' className="text-blue-500" href={`${oneCandidate?.links?.github}`}>Github Link</Link></h1>
-                            <h1>Interview By - <b>{`${oneCandidate?.interviewedBy}`}</b></h1>
-                        </>
-                    )}
+
+                    <>
+                        <div>
+                            {/* Candidate Name */}
+                            <h1>
+                                Candidate Name -{" "}
+                                <b>
+                                    {isLoading ? (
+                                        <span className="block h-6 w-48 bg-gray-300 rounded animate-pulse"></span>
+                                    ) : (
+                                        `${oneCandidate?.name}`
+                                    )}
+                                </b>
+                            </h1>
+
+                            {/* Candidate Roll */}
+                            <h1>
+                                Candidate Roll -{" "}
+                                <b>
+                                    {isLoading ? (
+                                        <span className="block h-6 w-24 bg-gray-300 rounded animate-pulse"></span>
+                                    ) : (
+                                        oneCandidate?.roll
+                                    )}
+                                </b>
+                            </h1>
+
+                            {/* Candidate Branch */}
+                            <h1>
+                                Candidate Branch -{" "}
+                                <b>
+                                    {isLoading ? (
+                                        <span className="block h-6 w-36 bg-gray-300 rounded animate-pulse"></span>
+                                    ) : (
+                                        oneCandidate?.branch
+                                    )}
+                                </b>
+                            </h1>
+
+                            {/* Studying Year */}
+                            <h1>
+                                Studying Year -{" "}
+                                <b>
+                                    {isLoading ? (
+                                        <span className="block h-6 w-20 bg-gray-300 rounded animate-pulse"></span>
+                                    ) : (
+                                        oneCandidate?.yearOfStudy
+                                    )}
+                                </b>
+                            </h1>
+
+                            {/* Domain Applied */}
+                            <h1>
+                                Domain Applied -{" "}
+                                <b>
+                                    {isLoading ? (
+                                        <span className="block h-6 w-40 bg-gray-300 rounded animate-pulse"></span>
+                                    ) : (
+                                        oneCandidate?.domain
+                                    )}
+                                </b>
+                            </h1>
+
+                            {/* Resume Link */}
+                            <h1>
+                                Resume Link -{" "}
+                                {isLoading ? (
+                                    <span className="block h-6 w-32 bg-gray-300 rounded animate-pulse"></span>
+                                ) : (
+                                    <a
+                                        target="_blank"
+                                        className="text-blue-500"
+                                        href={`${oneCandidate?.links?.resume}`}
+                                        rel="noopener noreferrer"
+                                    >
+                                        Resume Link
+                                    </a>
+                                )}
+                            </h1>
+
+                            {/* LinkedIn Link */}
+                            <h1>
+                                Linkedin Link -{" "}
+                                {isLoading ? (
+                                    <span className="block h-6 w-32 bg-gray-300 rounded animate-pulse"></span>
+                                ) : (
+                                    <a
+                                        target="_blank"
+                                        className="text-blue-500"
+                                        href={`${oneCandidate?.links?.linkedin}`}
+                                        rel="noopener noreferrer"
+                                    >
+                                        Linkedin Link
+                                    </a>
+                                )}
+                            </h1>
+
+                            {/* GitHub Link */}
+                            <h1>
+                                Github Link -{" "}
+                                {isLoading ? (
+                                    <span className="block h-6 w-32 bg-gray-300 rounded animate-pulse"></span>
+                                ) : (
+                                    <a
+                                        target="_blank"
+                                        className="text-blue-500"
+                                        href={`${oneCandidate?.links?.github}`}
+                                        rel="noopener noreferrer"
+                                    >
+                                        Github Link
+                                    </a>
+                                )}
+                            </h1>
+
+                            {/* Interview By */}
+                            <h1>
+                                Interview By -{" "}
+                                <b>
+                                    {isLoading ? (
+                                        <span className="block h-6 w-40 bg-gray-300 rounded animate-pulse"></span>
+                                    ) : (
+                                        `${oneCandidate?.interviewedBy}`
+                                    )}
+                                </b>
+                            </h1>
+                        </div>
+                    </>
+
                 </div>
                 <div className='w-full p-2 flex items-center justify-evenly'>
                     <Button buttonName={"Selected"} ownClass={`bg-green-500 text-slate-50 `} func={handleSelected} />

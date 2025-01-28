@@ -10,6 +10,7 @@ import DBConnection from '@/lib/database'
 import Search from '@/components/Search'
 import { User } from 'next-auth'
 import { useToast } from '@/hooks/use-toast'
+import Link from 'next/link'
 
 const page = () => {
     const session = useSession();
@@ -32,14 +33,16 @@ const page = () => {
 
     const router = useRouter();
     const { toast } = useToast();
-    const handleAttendance = () => {
-        router.push("/home/attendance")
-    }
+
+    //no need as we are using link for redirecting to this route.
+    // const handleAttendance = () => {
+    //     router.push("/home/attendance")
+    // }
 
     const handleLogOut = async () => {
-        await signOut({callbackUrl:'/signin'})
+        await signOut({ callbackUrl: '/signin' })
     }
-    
+
 
     const user = {
         user: {
@@ -59,8 +62,12 @@ const page = () => {
                     </div>
                     <div className='flex flex-wrap-reverse gap-4 items-center justify-center md:mr-11'>
                         <Button buttonName={"Copy Form Link"} ownClass={'bg-green-500 hover:shadow-black'} func={handleFormLink} />
-                        <button onClick={() => { handleAttendance() }} className={`bg-blue-500 scale-110 text-white py-1 px-3 rounded-md flex items-center justify-center hover:drop-shadow-lg hover:opacity-90 `}>Attendance</button>
-                        <Button buttonName={"Log out"} ownClass={'bg-red-500 hover:shadow-black'} func={handleLogOut} />
+
+                        {/*
+                        Previously there was a button and inside that button a handleattendance funtion were there calling which redirect to a particular page but in order to optimize the code we have added a link component to the button so that it will reload the page in advanced insted of waiting to the request coming after clicking the button and then by using router.push redircting to the new page.
+                        */}
+                        <Link href={"/home/attendance"}><button className={`bg-slate-50 scale-110 text-[#000] py-1 px-3 rounded-md flex items-center justify-center hover:drop-shadow-lg hover:opacity-90 `}>Attendance</button></Link>
+                        <button className={`bg-red-500 scale-110 text-slate-50 py-1 px-3 rounded-md flex items-center justify-center hover:drop-shadow-lg hover:opacity-90 `} onClick={handleLogOut}>Log out</button>
                     </div>
 
                 </div>

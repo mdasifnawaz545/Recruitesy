@@ -90,9 +90,9 @@ const page = ({ }) => {
 
     return (
         <div className="w-full text-black min-h-screen flex items-center justify-center py-4">
-            <div className=" w-full md:w-1/2 px-8 md:px-0">
+            <div className=" w-full md:w-1/2 px-8 md:px-0 mt-4">
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(handleFormSubmission)} className="space-y-8">
+                    <form onSubmit={form.handleSubmit(handleFormSubmission)} className="space-y-6">
                         <FormField
                             control={form.control}
                             name="name"
@@ -349,7 +349,7 @@ const page = ({ }) => {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="bg-orange-500 w-full hover:bg-orange-800 h-8">Submit</Button>
+                        <Button type="submit" className="bg-transparent border-[1px] border-gray-600 w-full hover:shadow-md hover:shadow-blue-400 h-8 text-slate-50 hover:duration-200">Submit</Button>
                     </form>
                 </Form>
 

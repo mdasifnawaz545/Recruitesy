@@ -1,10 +1,12 @@
 "use client"
 import Button from '@/components/Button';
-import axios from 'axios';
+import axios, { Axios, AxiosError } from 'axios';
 import React, { use, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Skeleton from 'react-loading-skeleton';
+import { title } from 'process';
+import { useToast } from '@/hooks/use-toast';
 
 interface myParams {
     domain: string,
@@ -17,6 +19,7 @@ const page = ({ params }: { params: Promise<myParams> }) => {
     const [message, setMessage] = useState("");
     const [oneCandidate, setOneCandidate] = useState<candidate>()
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const { toast } = useToast()
 
     //The initial value of the message should be first fethed from the backend in order to view if already it is present.
 
@@ -24,13 +27,24 @@ const page = ({ params }: { params: Promise<myParams> }) => {
 
         //call to interview[roll] of current candidate
         try {
+            console.log(resolvedParams.roll)
             const response = await axios.get(`/api/selected/${resolvedParams.roll}`)
             if (response) {
                 //Only Success Message will be shown, not redirecting to any other pages as Next Button functionality is going to do the same.
+                toast({
+                    title: response.data.message,
+                    description: `${oneCandidate?.name} is Selected Successfully`
+                })
             }
 
         } catch (error) {
             // Error Message
+            //Only Success Message will be shown, not redirecting to any other pages as Next Button functionality is going to do the same.
+            toast({
+                title: "Not Selected",
+                description: "Intenal Server Error",
+                variant: "destructive"
+            })
         }
     }
 
@@ -60,8 +74,6 @@ const page = ({ params }: { params: Promise<myParams> }) => {
         }
 
     }
-
-
 
     const fetchCandidate = async () => {
         try {
@@ -110,8 +122,8 @@ const page = ({ params }: { params: Promise<myParams> }) => {
                     )}
                 </div>
                 <div className='w-full p-2 flex items-center justify-evenly'>
-                    <Button buttonName={"Selected"} ownClass={"bg-green-500 text-white"} func={handleSelected} />
-                    <Button buttonName={"Next"} ownClass={"bg-blue-500 text-white px-8"} func={handleNext} />
+                    <Button buttonName={"Selected"} ownClass={"bg-green-500  text-[#000]"} func={handleSelected} />
+                    <Button buttonName={"Next"} ownClass={"bg-blue-500 text-[#000] px-8"} func={handleNext} />
                 </div>
             </div>
             <div className='md:w-1/2 w-full md:m-0 my-2 p-0'>

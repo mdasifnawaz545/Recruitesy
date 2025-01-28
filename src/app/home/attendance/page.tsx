@@ -34,14 +34,14 @@ const page = () => {
   }, [])
 
 
-  const handlePresenties = async () => {
+  // const handlePresenties = async () => {
 
-  }
+  // }
 
 
-  const handleAbsenties = async () => {
+  // const handleAbsenties = async () => {
 
-  }
+  // }
 
   useEffect(() => {
     fetchAllCandidate();
@@ -51,18 +51,19 @@ const page = () => {
   console.log(allCandidate)
 
   return (
-    <div className='min-h-screen  text-sm flex text-white flex-col gap-8 items-center justify-start mx-8 m-8'>
+    <div className='min-h-screen text-sm flex text-white flex-col md:gap-8 items-start md:justify-start justify-center gap-2 mx-8 m-8'>
       <div className='w-full flex flex-col items-center justify-start'>
-        <div className='w-full md:flex flex-wrap items-center flex-col justify-evenly gap-4'>
+        <div className='w-full md:flex flex-wrap max-md:items-start flex-col md:justify-evenly justify-center gap-4'>
           <div className='md:flex items-center md:w-full md:justify-between mx-4'>
             <div>
               <h1 className='text-lg text-bold'>ALL CANDIDATES</h1>
             </div>
             <div className='flex md:w-72 items-center justify-around'>
-              <Link  href={"/home/attendance/absent"}><Button buttonName={"Absenties"} ownClass={"bg-red-500 text-white"} func={() => { }} /></Link>
-              <Link  href={"/home/attendance/present"}> <Button buttonName={"Presenties"} ownClass={"bg-green-500 text-white"} func={() => { }} /></Link>
+              <Link href={"/home/attendance/absent"}><Button buttonName={"Absenties"} ownClass={"bg-red-500 text-white"} func={() => { }} /></Link>
+              <Link href={"/home/attendance/present"}> <Button buttonName={"Presenties"} ownClass={"bg-green-500 text-white"} func={() => { }} /></Link>
             </div>
           </div>
+          <div className='my-2 max-sm:my-0 md:my-0 flex items-center justify-center'></div>
           <div className='my-4 md:my-0 flex items-center justify-center'></div>
           <div>
             <Search />

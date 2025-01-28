@@ -5,7 +5,7 @@ import CandidateCardWithOneButton from '@/components/CandidateCardWithOneButton'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import Search from '@/components/Search'
 import axios from 'axios'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import React, { use, useEffect, useState } from 'react'
 
 interface params {
@@ -50,29 +50,36 @@ const page = ({ params }: { params: Promise<params> }) => {
   const handleInterviewed = async () => {
     router.push(`/home/interviewed/${domain}`)
   }
+  const handleTakeInterviewed = async (domain: string, roll: string) => {
+    redirect(`/home/interview/${domain}/${roll}`);
+  }
 
   return (
     <div className='min-h-screen text-sm text-white flex flex-col gap-8 items-center justify-start mx-8 mt-8'>
-      <div className='w-full flex flex-col items-center justify-evenly'>
-        <div className='w-full flex flex-wrap items-center md:justify-between justify-evenly gap-4'>
-          <h1 className='text-lg text-bold'>ALL {domain.toUpperCase()} {"Present Candidates".toUpperCase()}</h1>
-          <Button buttonName={"Selected Candidates"} ownClass={"bg-green-500 text-white"} func={handleSelected} />
-          <Button buttonName={"Interviewed Candidates"} ownClass={"bg-blue-500 text-white"} func={handleInterviewed} />
 
-          <div className='w-full flex items-center justify-center' >
-            <Search />
-          </div>
+      <div className='w-full flex flex-col items-center justify-start'>
+        <div className='w-full md:flex flex-wrap items-center justify-between gap-4 mb-4'>
+
+          <div>
+            <h1 className='text-lg text-bold'>ALL {domain.toUpperCase()} {"Present Candidates".toUpperCase()}</h1></div>
+          <div className='flex gap-8'><Button buttonName={"Selected Candidates"} ownClass={"bg-green-500 text-[#000]"} func={handleSelected} />
+            <Button buttonName={"Interviewed Candidates"} ownClass={"bg-blue-500 text-[#000]"} func={handleInterviewed} /></div>
+        </div>
+        <div className='my-4 md:my-0 flex items-center justify-center'></div>
+        <div>
+          <Search />
         </div>
 
+
       </div>
-      <div className='w-full min-h-full flex flex-col flex-wrap gap-4'>
+      <div className='w-full flex flex-col flex-wrap gap-4'>
 
         {
           (isLoading) ? (<div className='w-full h-1/2 flex items-center justify-center'><LoadingSpinner /></div>) : (
-            <div className='flex-col gap-4 min-h-screen'>
+            <div className='flex flex-col gap-2 w-full h-full'>
               {
                 allCandidate.map((el: candidate, index: number) => (<a href={`/home/interview/${el.domain}/${el.roll}`} key={index} ><CandidateCardWithOneButton
-                  name={el.name} roll={el.roll as unknown as number} buttonName={"Take Interview"} func={()=>{}} ownClass={''} /></a>))
+                  name={el.name} roll={el.roll as unknown as number} buttonName={"Take Interview"} func={() => { handleTakeInterviewed(el.domain, el.roll) }} ownClass={' text-[#000]'} /></a>))
               }
             </div>
           )

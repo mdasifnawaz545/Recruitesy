@@ -18,11 +18,18 @@ const page = () => {
         setIsLoading(true);
         try {
 
-            const response = await axios.get("/api/getCandidate");
-            console.log("My Response")
-            console.log("Frontend Response - ", response)
+            const response = await axios.get("/api/attendies/absenties");
+
             if (response) {
                 setAllCandidate(response.data as unknown as candidate[])
+                setIsLoading(false);
+
+            }
+            else {
+                toast({
+                    title: "No Candidate",
+                    description: "No candidate are found to be absent"
+                })
                 setIsLoading(false);
 
             }
@@ -34,23 +41,34 @@ const page = () => {
 
     }, [])
 
+    const [random, setRandom] = useState<boolean>(false); // it is only used to re-render the page whenever the handlePresent function is being called.
 
-
-    const handlePresent = async () => {
+    const handlePresent = async (roll: string) => {
         try {
-            const response = await axios.get(`/api/attendance/present/roll`)
+            console.log(roll)
+            const response = await axios.get(`/api/attendance/present/${roll}`)
             if (response) {
                 // setPresent(true)
                 toast({
                     title: "Success",
                     description: "Marked as Present"
                 })
+                setRandom(true);
             }
             else {
-                //Problem
+                toast({
+                    title: "Failed",
+                    description: "Not Marked as Present",
+                    variant: "destructive"
+                })
             }
         } catch (error) {
             //Problem while making as present
+            toast({
+                title: "Failed",
+                description: "Not Marked as Present",
+                variant: "destructive"
+            })
         }
 
     }
@@ -60,7 +78,7 @@ const page = () => {
     useEffect(() => {
         fetchAllCandidate();
 
-    }, [])
+    }, [random])
 
     console.log(allCandidate)
 
@@ -89,7 +107,7 @@ const page = () => {
                             {
 
                                 allCandidate.map((el: candidate, index: number) => (<CandidateCardWithOneButton
-                                    name={el.name} roll={el.roll as unknown as number} buttonName={'Mark as Present'} func={handlePresent} ownClass={''} />))
+                                    name={el.name} roll={el.roll as unknown as number} buttonName={'Mark as Present'} func={() => { handlePresent(el.roll) }} ownClass={''} />))
                             }
                         </div>
                     )

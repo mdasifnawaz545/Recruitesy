@@ -9,14 +9,12 @@ interface functionType {
 
 const CandidateCardWithOneButton = ({ name, roll, buttonName = "Take Interview", func = () => { }, ownClass = "" }: { name: string, roll: number, buttonName: string, func: any, ownClass: string }) => {
 
-    const [present, setPresent] = useState(false);
-    const [absent, setAbsent] = useState(true);
 
     // We are here usnig the concept of nextjs is that, call the function or fetch the data in a component where it is used.
 
     //Take an Interview API call not logic logic will be there inside the route.ts where you are calling to or where the API is redirecting you to.
 
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    
 
 
 
@@ -28,7 +26,7 @@ const CandidateCardWithOneButton = ({ name, roll, buttonName = "Take Interview",
 
             </div>
             <div className='w-full px-4 md:w-1/2 flex items-center md:justify-end justify-center gap-4'>
-                <Button buttonName={buttonName} ownClass={`bg-blue-500 text-white ${ownClass} ${(present) ? "disabled" : ""}`} func={func} />
+                <Button buttonName={buttonName} ownClass={`bg-blue-500  text-[#000] ${ownClass}`} func={func} />
             </div>
         </div>
     )

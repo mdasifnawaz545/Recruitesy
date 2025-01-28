@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
         const response = await candidateModel.findOneAndUpdate({ roll: roll }, {
             $set: {
                 interviewed: true,
-                selected: false,
                 isinterviewRunning: false,
                 message: message,
                 interviewedBy: recruiterEmail

@@ -9,10 +9,12 @@ export async function GET(request: NextRequest) {
     try {
         await DBConnection();
         console.log("Random Backend Route")
-        const response = await candidateModel.findOne({ $and: [{ domain: domain }, { interviewed: false }, { present: true }, { isinterviewRunning: false }] });
-        if (response) {
-           
-            return NextResponse.json(response)
+        const response = await candidateModel.findOne({ $and: [{ domain: domain }, { interviewed: false }, { present: true }, { isinterviewRunning: false }, { selected: false }] });
+        const id = response?._id;
+        const newResponse = await candidateModel.findByIdAndUpdate(id, { $set: { isinterviewRunning: true } });
+        if (newResponse) {
+
+            return NextResponse.json(newResponse)
         }
         else {
             return NextResponse.json({

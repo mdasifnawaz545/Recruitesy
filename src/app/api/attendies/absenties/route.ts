@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { candidateModel } from "@/models/candidate";
 import DBConnection from "@/lib/database";
-import { resolve } from "path";
+
 
 
 export async function GET(request: NextRequest) {

@@ -6,19 +6,26 @@ import DBConnection from "@/lib/database";
 
 export async function GET(request: NextRequest) {
     const id = request.url.substring(request.url.lastIndexOf('/') + 1)
+    console.log("ID is : ", id)
     try {
         await DBConnection();
-        const response = await candidateModel.findByIdAndUpdate(id, { present: false })
-        if (response) {
+        try {
+            const response = await candidateModel.findOneAndUpdate({ roll: id }, { $set: { present: false } })
+            console.log(response)
+            if (response) {
+                return NextResponse.json({
+                    message: "Marked as Absent",
+                    status: true
+                })
+            }
             return NextResponse.json({
-                message: "Marked as Absent",
-                status: true
+                message: "Not Marked as Absent",
+                status: false
             })
+        } catch (error) {
+            console.log(error)
         }
-        return NextResponse.json({
-            message: "Not Marked as Absent",
-            status: false
-        })
+
     } catch (error) {
         return NextResponse.json({
             message: "Not Marked as Absent",

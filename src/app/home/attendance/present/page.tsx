@@ -18,7 +18,7 @@ const page = () => {
     setIsLoading(true);
     try {
 
-      const response = await axios.get("/api/getCandidate");
+      const response = await axios.get("/api/attendies/presenties");
       console.log("My Response")
       console.log("Frontend Response - ", response)
       if (response) {
@@ -33,26 +33,34 @@ const page = () => {
     //useCallback concept here
 
   }, [])
+  const [random, setRandom] = useState<boolean>(false); // it is only used to re-render the page whenever the handlePresent function is being called.
 
 
-  const handleAbsent = async () => {
+  const handleAbsent = async (roll: string) => {
     try {
-        const response = await axios.get(`/api/attendace/absent/roll`)
-        if (response) {
-            // setAbsent(false);
-        }
-        else {
-            //Problem
-        }
+      const response = await axios.get(`/api/attendance/absent/${roll}`)
+      if (response) {
+        toast({
+          title: "Marked as Present",
+          description: `${roll} is now marked as present`
+        })
+        setRandom(true);
+      }
+      else {
+        toast({
+          title: "Not Marked as Formed",
+          description: `${roll} is not marked as present`
+        })
+      }
     } catch (error) {
-        //Problem while making as present
+      //Problem while making as present
     }
-}
+  }
 
   useEffect(() => {
     fetchAllCandidate();
 
-  }, [])
+  }, [random])
 
   console.log(allCandidate)
 
@@ -79,7 +87,7 @@ const page = () => {
               {
 
                 allCandidate.map((el: candidate, index: number) => (<CandidateCardWithOneButton
-                  name={el.name} roll={el.roll as unknown as number} buttonName={'Mark as Absent'} func={handleAbsent} ownClass={'bg-red-500'} />))
+                  name={el.name} roll={el.roll as unknown as number} buttonName={'Mark as Absent'} func={() => { handleAbsent(el.roll) }} ownClass={'bg-red-500'} />))
               }
             </div>
           )
