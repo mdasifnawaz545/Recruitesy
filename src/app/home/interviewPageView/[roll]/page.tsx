@@ -77,14 +77,14 @@ const Page = ({ params }: { params: Promise<params> }) => {
                 <div className='w-full text-slate-100 h-full bg-transparent backdrop-blur-lg border-mywidth border-gray-600 rounded-lg p-4 leading-10 drop-shadow-lg text-sm'>
 
                     <>
-                        <h1>Candidate Name - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
-                        <h1>Candidate Roll - <span className="block w-24 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
-                        <h1>Candidate Branch - <span className="block w-36 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
-                        <h1>Studying Year - <span className="block w-12 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
-                        <h1>Domain Applied - <span className="block w-36 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
-                        <h1>Resume Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
-                        <h1>LinkedIn Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
-                        <h1>GitHub Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
+                        <h1 className='sm:flex items-center'>Candidate Name - <span className="block w-48  sm:ml-4 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
+                        <h1 className='sm:flex items-center' >Candidate Roll - <span className="block w-24 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                        <h1 className='sm:flex items-center' >Candidate Branch - <span className="block w-36 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                        <h1 className='sm:flex items-center' >Studying Year - <span className="block w-12 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                        <h1 className='sm:flex items-center' >Domain Applied - <span className="block w-36 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                        <h1 className='sm:flex items-center' >Resume Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                        <h1 className='sm:flex items-center' >LinkedIn Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                        <h1 className='sm:flex items-center' >GitHub Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
                     </>
 
                 </div>
