@@ -2,14 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { candidateModel } from "@/models/candidate";
 import { Session } from "inspector/promises";
 import { useSession } from "next-auth/react";
-import { getServerSession } from "next-auth";
+import { getServerSession, User } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
 
 
 export async function GET(request: NextRequest) {
+    const session = await getServerSession(authOptions);
+    if (!(session?.user as User)) {
+        return NextResponse.json({ message: "User is not Authenticated", status: false });
+    }
     const roll = request.url.substring(request.url.lastIndexOf('/') + 1)
     console.log(roll)
-    const session = await getServerSession(authOptions);
     const recruiterEmail = session?.user.email
     console.log(recruiterEmail)
 

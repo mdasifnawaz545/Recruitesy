@@ -3,15 +3,18 @@ import { candidateModel } from "@/models/candidate";
 import DBConnection from "@/lib/database";
 import { getSession, useSession } from "next-auth/react";
 import { authOptions } from "../../auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
+import { getServerSession, User } from "next-auth";
 
 export async function POST(request: NextRequest) {
+    const session = await getServerSession(authOptions);
+    if (!(session?.user as User)) {
+        return NextResponse.json({ message: "User is not Authenticated", status: false });
+    }
     const roll = request.url.substring(request.url.lastIndexOf('/') + 1);
     const requestJson = await request.json();
     const { message } = requestJson;
     console.log("The Message is - ", message);
 
-    const session = await getServerSession(authOptions);
     const recruiterEmail = session?.user.email
 
 

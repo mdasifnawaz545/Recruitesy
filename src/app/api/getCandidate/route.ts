@@ -5,6 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/options";
 
 export async function GET(request: NextRequest) {
+    const session = await getServerSession(authOptions);
+    if (!(session?.user as User)) {
+        return NextResponse.json({ message: "User is not Authenticated", status: false });
+    }
     try {
         //MongoDB do not have any relation with the schema, we are only going to create the schema to create a model upon this, there is no any schema used to save in the db only the models which is created using these schema are creted in the db. 
 

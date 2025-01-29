@@ -54,25 +54,32 @@ const page = () => {
             <div className='md:px-0 w-full flex-col'>
                 <h1 className='text-md py-4 md:text-center mx-8 tracking-widest border-b-mywidth rounded-lg border-gray-600'>Welcome, {(username) || "Md Asif Nawaz"} to Recruitesy.</h1>
                 <div className='flex py-1'></div>
-                <div className='flex gap-4  w-full flex-wrap items-center justify-between '>
-                    <div className='flex items-center mt-2 justify-between md:pl-8 md:justify-center'>
-                        <h1 className='text-lg  text-bold text-center'>ALL DOMAINS</h1>
+                <div className='md:flex gap-4 max-sm:px-8 w-full flex-wrap items-center justify-between '>
+                    <div className='flex items-center mt-2 max-sm:mb-2 justify-between md:pl-8 md:justify-center'>
+                        <h1 className='text-lg text-bold text-center'>ALL DOMAINS</h1>
                     </div>
                     <div className='flex justify-center items-center gap-8'>
                     </div>
-                    <div className='flex flex-wrap-reverse gap-4 items-center justify-center md:mr-11'>
-                        <Button buttonName={"Copy Form Link"} ownClass={'bg-green-500 hover:shadow-black'} func={handleFormLink} />
-
+                    <div className='max-sm:flex-col md:flex md:gap-4 max-sm:gap-2 items-center justify-center md:mr-11'>
+                        <div className='flex items-center justify-center max-md:mb-3'>
+                            <Button buttonName={"Copy Form Link"} ownClass={'bg-green-500 hover:shadow-black'} func={handleFormLink} />
+                        </div>
                         {/*
                         Previously there was a button and inside that button a handleattendance funtion were there calling which redirect to a particular page but in order to optimize the code we have added a link component to the button so that it will reload the page in advanced insted of waiting to the request coming after clicking the button and then by using router.push redircting to the new page.
                         */}
-                        <Link href={"/home/attendance"}><button className={`bg-slate-50 scale-110 text-[#000] py-1 px-3 rounded-md flex items-center justify-center hover:drop-shadow-lg hover:opacity-90 `}>Attendance</button></Link>
-                        <button className={`bg-red-500 scale-110 text-slate-50 py-1 px-3 rounded-md flex items-center justify-center hover:drop-shadow-lg hover:opacity-90 `} onClick={handleLogOut}>Log out</button>
+                        <div className='flex items-center justify-center  max-md:mb-3'>
+
+
+                            <Link href={"/home/attendance"}><button className={`bg-slate-50 scale-110 text-[#000] py-1 px-3 rounded-md flex items-center justify-center hover:drop-shadow-lg hover:opacity-90 `}>Attendance</button></Link>
+                        </div>
+                        <div className='flex items-center justify-center'>
+                            <button className={`bg-red-500 scale-110 text-slate-50 py-1 px-3 rounded-md flex items-center justify-center hover:drop-shadow-lg hover:opacity-90 `} onClick={handleLogOut}>Log out</button>
+                        </div>
                     </div>
 
                 </div>
             </div>
-            <div className='flex items-center justify-center gap-4 flex-wrap mt-4 w-full'>
+            <div className='flex items-center justify-center gap-4 flex-wrap mt-4 w-full max-sm:gap-2'>
 
                 {
                     Domains.map((el: domainObject, index: number) => (<Card key={index} domainName={el.domain} logo={el.logo} dbDomainName={el.dbDomainName} />))
