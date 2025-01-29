@@ -54,7 +54,7 @@ const page = () => {
             <div className='md:px-0 w-full flex-col'>
                 <h1 className='text-md py-4 md:text-center mx-8 tracking-widest border-b-mywidth rounded-lg border-gray-600'>Welcome, {(username) || "Md Asif Nawaz"} to Recruitesy.</h1>
                 <div className='flex py-1'></div>
-                <div className='md:flex gap-4 max-sm:px-8 w-full flex-wrap items-center justify-between '>
+                <div className='md:flex gap-4 max-[767px]:px-8 max-md:px-8 w-full flex-wrap items-center justify-between '>
                     <div className='flex items-center mt-2 max-sm:mb-2 justify-between md:pl-8 md:justify-center'>
                         <h1 className='text-lg text-bold text-center'>ALL DOMAINS</h1>
                     </div>
