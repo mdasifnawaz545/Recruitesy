@@ -49,9 +49,11 @@ const page = ({ params }: { params: Promise<params> }) => {
     return (
         <div className='min-h-screen  text-white flex flex-col gap-8 items-center justify-start mx-8 mt-8'>
             <div className='w-full flex flex-col items-center justify-center'>
-                <div className='w-full flex items-center md:justify-center justify-evenly'>
+                <div className='w-full md:flex flex-col items-center md:justify-center justify-evenly'>
+                    <div>
                     <h1 className='text-2xl text-bold'>ALL {resolvedParams.domain.toUpperCase()} {"Interviewed Candidates".toUpperCase()}</h1>
-                    <div className='w-full flex items-center p-0 m-0 text-center justify-center'>
+                    </div>
+                    <div className='w-full flex items-center p-0 mt-4 text-center justify-center'>
                         <Search />
                     </div>
                 </div>

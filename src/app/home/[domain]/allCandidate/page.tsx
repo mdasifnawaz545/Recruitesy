@@ -61,11 +61,13 @@ const page = ({ params }: { params: Promise<params> }) => {
         <div className='w-full md:flex flex-wrap items-center justify-between gap-4 mb-4'>
 
           <div>
-            <h1 className='text-lg text-bold'>ALL {domain.toUpperCase()} {"Present Candidates".toUpperCase()}</h1></div>
-          <div className='flex gap-8'><Button buttonName={"Selected Candidates"} ownClass={"bg-green-500 text-[#000]"} func={handleSelected} />
+            <h1 className='text-lg text-bold'>ALL {domain.toUpperCase()} {"Present Candidates".toUpperCase()}</h1>
+          </div>
+          <div className='flex gap-8 mt-2'>
+            <Button buttonName={"Selected Candidates"} ownClass={"bg-green-500 text-[#000]"} func={handleSelected} />
             <Button buttonName={"Interviewed Candidates"} ownClass={"bg-blue-500 text-[#000]"} func={handleInterviewed} /></div>
         </div>
-        <div className='my-4 md:my-0 flex items-center justify-center'></div>
+        <div className='my-1 md:my-0 flex items-center justify-center'></div>
         <div>
           <Search />
         </div>

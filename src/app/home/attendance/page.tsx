@@ -51,26 +51,26 @@ const page = () => {
   console.log(allCandidate)
 
   return (
-    <div className='min-h-screen text-sm flex text-white flex-col md:gap-8 items-start md:justify-start justify-center gap-2 mx-8 m-8'>
+    <div className='min-h-screen text-sm text-white flex-col md:gap-8 items-center  justify-start gap-2 mx-8 m-8'>
       <div className='w-full flex flex-col items-center justify-start'>
-        <div className='w-full md:flex flex-wrap max-md:items-start flex-col md:justify-evenly justify-center gap-4'>
+        <div className='w-full md:flex flex-wrap max-md:items-center flex-col md:justify-evenly justify-center gap-4'>
           <div className='md:flex items-center md:w-full md:justify-between mx-4'>
             <div>
               <h1 className='text-lg text-bold'>ALL CANDIDATES</h1>
             </div>
-            <div className='flex md:w-72 items-center justify-around'>
+            <div className='flex md:w-72 items-center justify-around mt-2'>
               <Link href={"/home/attendance/absent"}><Button buttonName={"Absenties"} ownClass={"bg-red-500 text-white"} func={() => { }} /></Link>
               <Link href={"/home/attendance/present"}> <Button buttonName={"Presenties"} ownClass={"bg-green-500 text-white"} func={() => { }} /></Link>
             </div>
           </div>
           <div className='my-2 max-sm:my-0 md:my-0 flex items-center justify-center'></div>
-          <div className='my-4 md:my-0 flex items-center justify-center'></div>
+          <div className='my-2 md:my-0 flex items-center justify-center'></div>
           <div>
             <Search />
           </div>
         </div>
       </div>
-      <div className='w-full flex flex-col flex-wrap gap-2'>
+      <div className='w-full flex flex-col flex-wrap gap-2 pt-4'>
         {
           (isLoading) ? (<LoadingSpinner />) : (
             <div className='flex flex-col gap-2 w-full h-full'>

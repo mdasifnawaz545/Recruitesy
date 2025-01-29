@@ -82,8 +82,7 @@ const CandidateCard = ({ name, roll }: { name: string, roll: string, }) => {
                 {
                     (present) ? (<Button buttonName={"Marked as Present"} ownClass={"bg-blue-400"} func={handleToast} />) : (
 
-                        <div className='w-1/2 flex items-center justify-end gap-4'>
-                            <Button buttonName={"Absent"} ownClass={`bg-red-400 text-white `} func={handleAbsent} />
+                        <div className='flex items-center justify-end gap-4'>
                             <Button buttonName={"Present"} ownClass={`bg-green-500  text-white`} func={handlePresent} />
                         </div>
 
