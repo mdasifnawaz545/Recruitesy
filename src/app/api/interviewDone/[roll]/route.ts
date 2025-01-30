@@ -13,7 +13,8 @@ export async function POST(request: NextRequest) {
     const roll = request.url.substring(request.url.lastIndexOf('/') + 1);
     const requestJson = await request.json();
     const { message } = requestJson;
-    console.log("The Message is - ", message);
+    console.log("The Message is ");
+    console.log("Roll - ", roll)
 
     const recruiterEmail = session?.user.email
 
@@ -25,27 +26,28 @@ export async function POST(request: NextRequest) {
                 interviewed: true,
                 isinterviewRunning: false,
                 message: message,
-                interviewedBy: recruiterEmail
+                interviewedBy: recruiterEmail,
+
             }
         }); //, 
-        if (response) {
-            return NextResponse.json({
-                message: "Interviewed Successfully",
-                status: true,
-            })
-        }
-        else {
-            return NextResponse.json({
-                message: "Not Interviewed",
-                status: false
-            })
-        }
-    } catch (errror) {
+    if (response) {
+        return NextResponse.json({
+            message: "Interviewed Successfully",
+            status: true,
+        })
+    }
+    else {
         return NextResponse.json({
             message: "Not Interviewed",
             status: false
         })
     }
+} catch (errror) {
+    return NextResponse.json({
+        message: "Not Interviewed",
+        status: false
+    })
+}
 
 }
 

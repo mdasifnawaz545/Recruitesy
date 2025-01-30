@@ -58,19 +58,26 @@ const page = ({ params }: { params: Promise<myParams> }) => {
     const handleNext = async () => {
 
         // Handle Next button with a total of two funcitonalities.
-        const response = await axios.post(`/api/interviewDone/${resolvedParams.roll}`, {
+        setIsLoading(true);
+        const response = await axios.post(`/api/interviewDone/${oneCandidate?.roll}`, {
             message: message
         })
+
         if (response) {
             // Here we are going to apply a condition is that the second mechanism will only work iff the response of the first funtionality returns successfullt.
             const response = await axios.get(`/api/randomCandidate/${resolvedParams.domain}`)
-            if (response.data == undefined) {
+
+
+            if (response.data.status == false) {
                 router.push("/home/completed")
 
             }
             // Success Message with next candidate whose roll is randomly generated but we have called him with its roll number.
             setMessage("");
             setOneCandidate(response.data as candidate)
+
+            setIsLoading(false);
+
         }
 
     }
@@ -79,7 +86,7 @@ const page = ({ params }: { params: Promise<myParams> }) => {
         try {
             const response = await axios.get(`/api/callInterview/${resolvedParams.roll}`)
             setOneCandidate(response.data as candidate)
-            console.log(oneCandidate)
+            console.log("Response - ", response);
             setIsLoading(false);
 
         } catch (error) {
