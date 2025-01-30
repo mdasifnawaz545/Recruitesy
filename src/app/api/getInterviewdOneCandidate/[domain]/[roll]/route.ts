@@ -10,16 +10,15 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ message: "User is not Authenticated", status: false });
     }
     const roll = request.url.substring(request.url.lastIndexOf('/') + 1);
-    const urlAfterExtractingRoll = request.url.substring(0, request.url.lastIndexOf('/') - 1);
-    const domain = request.url.substring(request.url.lastIndexOf('/') + 1);
-    console.log(roll)
-    console.log(domain)
+    const urlAfterExtractingRoll = request.url.substring(0, request.url.lastIndexOf('/'));
+    const domain = urlAfterExtractingRoll.substring(urlAfterExtractingRoll.lastIndexOf('/') + 1);
+    console.log("Roll is : ", roll)
+    console.log("Doamin is : ", domain)
 
     try {
         await DBConnection();
         const response = await candidateModel.findOne({
             domain: domain,
-            selected: false,
             interviewed: true,
             roll: { $ne: roll }
         });

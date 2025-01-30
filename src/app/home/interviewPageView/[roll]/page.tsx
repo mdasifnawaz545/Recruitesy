@@ -46,13 +46,18 @@ const Page = ({ params }: { params: Promise<params> }) => {
     }
 
     const handleNext = async () => {
-
+        console.log("Before - ",oneCandidate)
+        setIsLoading(true);
+        console.log("After - ",oneCandidate)
         // Handle Next button with a total of two funcitonalities.
         const url = `/api/getInterviewdOneCandidate/${oneCandidate?.domain}/${oneCandidate?.roll}`;
         try {
             const response = await axios.get(url);
+            console.log("Resonse- ",response?.data)
             if (response) {
                 setOneCandidate(response.data as candidate);
+                setIsLoading(false);
+
             }
             else {
                 console.log("Error")
@@ -75,17 +80,34 @@ const Page = ({ params }: { params: Promise<params> }) => {
         <div className='w-full px-10 text-sm min-h-screen md:flex flex-wrap-reverse items-center justify-between p-0'>
             <div className='md:w-1/2 w-full flex flex-col items-center justify-between gap-4'>
                 <div className='w-full text-slate-100 h-full bg-transparent backdrop-blur-lg border-mywidth border-gray-600 rounded-lg p-4 leading-10 drop-shadow-lg text-sm'>
+                    {
+                        (isLoading) ? (
 
-                    <>
-                        <h1 className='sm:flex items-center'>Candidate Name - <span className="block w-48  sm:ml-4 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
-                        <h1 className='sm:flex items-center' >Candidate Roll - <span className="block w-24 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
-                        <h1 className='sm:flex items-center' >Candidate Branch - <span className="block w-36 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
-                        <h1 className='sm:flex items-center' >Studying Year - <span className="block w-12 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
-                        <h1 className='sm:flex items-center' >Domain Applied - <span className="block w-36 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
-                        <h1 className='sm:flex items-center' >Resume Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
-                        <h1 className='sm:flex items-center' >LinkedIn Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
-                        <h1 className='sm:flex items-center' >GitHub Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
-                    </>
+                            <>
+                                <h1 className='sm:flex items-center'>Candidate Name - <span className="block w-48  sm:ml-4 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
+                                <h1 className='sm:flex items-center' >Candidate Roll - <span className="block w-24 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                                <h1 className='sm:flex items-center' >Candidate Branch - <span className="block w-36 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                                <h1 className='sm:flex items-center' >Studying Year - <span className="block w-12 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                                <h1 className='sm:flex items-center' >Domain Applied - <span className="block w-36 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                                <h1 className='sm:flex items-center' >Resume Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                                <h1 className='sm:flex items-center' >LinkedIn Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                                <h1 className='sm:flex items-center' >GitHub Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                            </>
+                        ) : (
+                            <>
+                                <h1>Candidate Name - <b>{`${oneCandidate?.name}`}</b></h1>
+                                <h1>Candidate Roll - <b>{oneCandidate?.roll}</b></h1>
+                                <h1>Candidate Branch - <b>{oneCandidate?.branch}</b></h1>
+                                <h1>Studying Year - <b>{oneCandidate?.yearOfStudy}</b></h1>
+                                <h1>Domain Applied - <b>{oneCandidate?.domain}</b></h1>
+                                <h1>Resume Link - <Link target='_blank' className='text-blue-500' href={`${oneCandidate?.links?.resume}`}>Resume Link</Link></h1>
+                                <h1>Linkedin Link - <Link target='_blank' className="text-blue-500" href={`${oneCandidate?.links?.linkedin}`}>Linkedin Link</Link></h1>
+                                <h1>Github Link - <Link target='_blank' className="text-blue-500" href={`${oneCandidate?.links?.github}`}>Github Link</Link></h1>
+                                <h1>Interview By - <b>{`${oneCandidate?.interviewedBy}`}</b></h1>
+                            </>
+                        )
+                    }
+
 
                 </div>
                 <div className='w-full p-2 flex items-center justify-evenly'>

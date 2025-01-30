@@ -35,7 +35,8 @@ const page = ({ params }: { params: Promise<params> }) => {
 
     }
 
-    const handleView = async () => {
+    const handleView = async (roll:string) => {
+        
 
     }
 
@@ -62,7 +63,7 @@ const page = ({ params }: { params: Promise<params> }) => {
 
             <div className='w-full flex flex-col flex-wrap gap-2'>
                 {
-                    (isLoading) ? (<div className='w-full h-1/2 flex items-center justify-center'><LoadingSpinner /></div>) : ((allCandidate) ? (allCandidate.map((el: candidate, index: number) => (<Link href={`/home/interviewPageView/${el.roll}`} key={index} ><CandidateCardWithOneButton buttonName={"View"} func={handleView()} name={el.name} roll={el.roll as unknown as number} ownClass={''} /></Link>))) : (message))
+                    (isLoading) ? (<div className='w-full h-1/2 flex items-center justify-center'><LoadingSpinner /></div>) : ((allCandidate) ? (allCandidate.map((el: candidate, index: number) => (<Link href={`/home/interviewPageView/${el.roll}`} key={index} ><CandidateCardWithOneButton buttonName={"View"} func={()=>{handleView(el.roll as string)}} name={el.name} roll={el.roll as unknown as number} ownClass={''} /></Link>))) : (message))
 
 
                 }

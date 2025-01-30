@@ -85,6 +85,10 @@ const Page = ({ params }: { params: Promise<params> }) => {
                          <h1 className='sm:flex items-center' >Resume Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
                          <h1 className='sm:flex items-center' >LinkedIn Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
                          <h1 className='sm:flex items-center' >GitHub Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                         <h1 className='sm:flex items-center'>Interview By - <span className="block w-48  sm:ml-4 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
+                         <h1 className='sm:flex items-center'>Selected By - <span className="block w-48  sm:ml-4 h-5 bg-gray-600 rounded animate-pulse"></span></h1>
+
+
                      </>
                     ) : (
                         <>
