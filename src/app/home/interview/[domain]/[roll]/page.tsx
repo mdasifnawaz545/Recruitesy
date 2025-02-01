@@ -99,7 +99,7 @@ const page = ({ params }: { params: Promise<myParams> }) => {
 
     }, [])
 
-    console.log(oneCandidate)
+    
     return (
         <div className='w-full px-10 text-sm min-h-screen md:flex flex-wrap-reverse items-center justify-between p-0'>
             <div className='md:w-1/2 w-full flex flex-col items-center justify-between gap-4'>

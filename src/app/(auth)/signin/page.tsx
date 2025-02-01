@@ -85,7 +85,7 @@ export default function Home() {
   }
 
   return (
-    <motion.div variants={signUpVariant} initial="initial" animate="animate" className="w-full min-h-screen flex items-center justify-center text-sm">
+    <motion.div variants={signUpVariant} initial="initial" animate="animate" className="w-full min-h-screen flex items-center justify-center max-sm:items-start max-sm:mt-10 text-sm">
       <div className=" w-64 h-[350px] bg-transparent border-mywidth border-gray-600 backdrop-blur-lg rounded-xl drop-shadow-lg flex flex-col justify-evenly items-center gap-4">
         <div>
           <img src="https://res.cloudinary.com/dpqdgcipi/image/upload/v1737533670/image-removebg-preview_1_gl5lis.png" width={200} height={50} alt={"LOGO"} />

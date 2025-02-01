@@ -2,7 +2,8 @@
 import Button from '@/components/Button'
 import CandidateCard from '@/components/CandidateCard'
 import LoadingSpinner from '@/components/LoadingSpinner'
-import Search from '@/components/Search'
+import SearchAttendance from '@/components/SearchAttendance'
+import Search from '@/components/SearchAttendance'
 import { useToast } from '@/hooks/use-toast'
 import axios from 'axios'
 import Link from 'next/link'
@@ -11,22 +12,26 @@ import React, { Suspense, useCallback, useEffect, useState } from 'react'
 const page = () => {
 
   const [allCandidate, setAllCandidate] = useState<candidate[]>([]);
+  const [oneCandidate, setOneCandidate] = useState<candidate>();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const fetchAllCandidate = useCallback(async (): Promise<any> => {
     setIsLoading(true);
     try {
+      const response = await fetch("/api/getCandidate");
+      console.log("My Response");
 
-      const response = await axios.get("/api/getCandidate");
-      console.log("My Response")
-      console.log("Frontend Response - ", response)
-      if (response) {
-        setAllCandidate(response.data as unknown as candidate[])
-        setIsLoading(false);
-
+      if (!response.ok) {
+        throw new Error("Failed to fetch candidates");
       }
+
+      const data = await response.json();
+      console.log("Frontend Response - ", data);
+
+      setAllCandidate(data as unknown as candidate[]);
+      setIsLoading(false);
     } catch (error) {
-      //Flash messages are there
+      console.error("Error fetching candidates:", error);
     }
 
     //useCallback concept here
@@ -34,21 +39,12 @@ const page = () => {
   }, [])
 
 
-  // const handlePresenties = async () => {
-
-  // }
-
-
-  // const handleAbsenties = async () => {
-
-  // }
-
   useEffect(() => {
     fetchAllCandidate();
 
   }, [])
 
-  console.log(allCandidate)
+
 
   return (
     <div className='min-h-screen text-sm text-white flex-col md:gap-8 items-center  justify-start gap-2 mx-8 m-8'>
@@ -66,7 +62,7 @@ const page = () => {
           <div className='my-2 max-sm:my-0 md:my-0 flex items-center justify-center'></div>
           <div className='my-2 md:my-0 flex items-center justify-center'></div>
           <div>
-            <Search />
+            <SearchAttendance />
           </div>
         </div>
       </div>
@@ -76,7 +72,7 @@ const page = () => {
             <div className='flex flex-col gap-2 w-full h-full'>
               {
 
-                allCandidate.map((el: candidate, index: number) => (<CandidateCard
+                allCandidate.map((el: candidate, index: number) => (<CandidateCard key={index}
                   name={el.name} roll={el.roll} />))
               }
             </div>
@@ -86,6 +82,6 @@ const page = () => {
 
     </div>
   )
-}
 
+}
 export default page

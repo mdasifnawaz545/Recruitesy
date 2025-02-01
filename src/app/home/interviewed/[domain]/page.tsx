@@ -1,7 +1,7 @@
 "use client"
 import CandidateCardWithOneButton from '@/components/CandidateCardWithOneButton'
 import LoadingSpinner from '@/components/LoadingSpinner'
-import Search from '@/components/Search'
+import Search from '@/components/SearchAttendance'
 import axios from 'axios'
 import Link from 'next/link'
 import React, { use, useState } from 'react'
@@ -54,9 +54,9 @@ const page = ({ params }: { params: Promise<params> }) => {
                     <div>
                     <h1 className='text-2xl text-bold'>ALL {resolvedParams.domain.toUpperCase()} {"Interviewed Candidates".toUpperCase()}</h1>
                     </div>
-                    <div className='w-full flex items-center p-0 mt-4 text-center justify-center'>
+                    {/* <div className='w-full flex items-center p-0 mt-4 text-center justify-center'>
                         <Search />
-                    </div>
+                    </div> */}
                 </div>
 
             </div>

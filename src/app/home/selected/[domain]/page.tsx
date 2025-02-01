@@ -1,6 +1,6 @@
 "use client"
 import CandidateCardWithOneButton from '@/components/CandidateCardWithOneButton'
-import Search from '@/components/Search'
+import Search from '@/components/SearchAttendance'
 import axios from 'axios'
 import { redirect } from 'next/navigation'
 import React, { use, useState } from 'react'
@@ -43,9 +43,9 @@ const page = ({ params }: { params: Promise<params> }) => {
             <div className='w-full flex flex-col items-center justify-center'>
                 <div className='w-full flex flex-wrap items-center justify-evenly'>
                     <h1 className='text-2xl text-bold'>ALL {resolvedParams.domain.toUpperCase()} {"Selected Candidates".toUpperCase()}</h1>
-                    <div className='mt-4'>
+                    {/* <div className='mt-4'>
                     <Search />
-                    </div>
+                    </div> */}
                 </div>
 
             </div>

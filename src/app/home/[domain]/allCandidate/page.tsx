@@ -3,7 +3,8 @@ import Button from '@/components/Button'
 import CandidateCard from '@/components/CandidateCard'
 import CandidateCardWithOneButton from '@/components/CandidateCardWithOneButton'
 import LoadingSpinner from '@/components/LoadingSpinner'
-import Search from '@/components/Search'
+import Search from '@/components/SearchAttendance'
+import SearchInterview from '@/components/SearchInterview'
 import axios from 'axios'
 import { redirect, useRouter } from 'next/navigation'
 import React, { use, useEffect, useState } from 'react'
@@ -68,9 +69,9 @@ const page = ({ params }: { params: Promise<params> }) => {
             <Button buttonName={"Interviewed Candidates"} ownClass={"bg-blue-500 text-[#000]"} func={handleInterviewed} /></div>
         </div>
         <div className='my-1 md:my-0 flex items-center justify-center'></div>
-        <div>
-          <Search />
-        </div>
+        {/* <div>
+          <SearchInterview domain={domain}/>
+        </div> */}
 
 
       </div>
@@ -95,5 +96,6 @@ const page = ({ params }: { params: Promise<params> }) => {
   )
 
 }
+
 export default page
 

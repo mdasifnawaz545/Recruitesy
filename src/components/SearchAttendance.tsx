@@ -3,26 +3,40 @@ import Button from './Button'
 import CandidateCard from './CandidateCard'
 import axios from 'axios'
 import { FaSearch } from "react-icons/fa";
-
+import { Tilt_Neon } from 'next/font/google';
+import { Description } from '@radix-ui/react-toast';
+import { useToast } from '@/hooks/use-toast';
+import { RxCross2 } from "react-icons/rx";
 
 const Search = () => {
     const [searchValue, setSearchValue] = useState("")
     const [candidate, setCandidate] = useState<candidate>();
-
+    const { toast } = useToast()
     const handleSearch = async () => {
-        try{
+        try {
             const response = await axios.get(`/api/searchCandidate/${searchValue}`);
-    
+
             if (response) {
                 setCandidate(response.data as unknown as candidate);
-                //Success Toast Message
+                toast({
+                    title: `Candidate found`,
+                    description: "Candidate Found Successfully"
+                })
             }
-            else { 
-                // User Not found
+            else {
+                toast({
+                    title: `Candidate not found`,
+                    description: "Candidate Not Found Successfully",
+                    variant: "destructive"
+                })
             }
-        }catch(error){
+        } catch (error) {
             console.log("Request not proceed")
         }
+
+    }
+    const handleRemove = () => {
+        setCandidate(undefined);
     }
     return (
         <div className='flex-col text-sm w-full max-sm:flex-col items-center justify-center gap-2'>
@@ -35,13 +49,21 @@ const Search = () => {
                     </button>
                 </div>
             </div>
-            <div className='w-full' >
+            <div className='w-full my-6' >
                 {
-                    (candidate) ? (<CandidateCard name={candidate.name} roll={candidate.roll} />) : null
-                }
+                    (candidate) ?
+                        (
+                            <div className='w-full my-2 flex items-center justify-between'>
+                                <CandidateCard name={candidate.name} roll={candidate.roll} />
+                                <button onClick={() => { handleRemove() }} className='hover:shadow-md hover:shadow-blue-400 border-mywidth border-gray-600 hover:duration-200 ml-2 rounded-lg p-1'><RxCross2 /></button>
+                            </div>
 
+                        ) : null
+
+
+                }
             </div>
-        </div>
+        </div >
     )
 }
 
