@@ -65,7 +65,7 @@ const page = () => {
   console.log(allCandidate)
 
   return (
-    <div className='min-h-screen  text-sm flex text-white flex-col gap-8 items-center justify-start mx-8 m-8'>
+    <div className='min-h-screen  text-sm flex text-white flex-col gap-8 items-center justify-start mx-8 m-4 mb-2'>
       <div className='w-full flex flex-col items-center justify-start'>
         <div className='w-full md:flex flex-wrap items-center flex-col justify-evenly gap-4'>
           <div className='md:flex items-center md:w-full md:justify-between mx-4'>
@@ -74,10 +74,10 @@ const page = () => {
             </div>
 
           </div>
-          <div className='my-4 md:my-0 flex items-center justify-center'></div>
+          {/* <div className='my-4 md:my-0 flex items-center justify-center'></div>
           <div>
             <Search />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className='w-full flex flex-col flex-wrap gap-2'>

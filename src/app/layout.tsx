@@ -24,11 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className={`min-h-full min-w-full bg-gradient-to-r from-gray-900 to-[#000] ${montserrat.className}`}>
-          <header>
+        <body className={`min-h-full bg-gradient-to-r from-gray-900 to-[#000] ${montserrat.className}`}>
+          <header >
             <Navbar />
           </header>
-          <main>
+          <main >
             {children}
           </main>
           <Toaster />

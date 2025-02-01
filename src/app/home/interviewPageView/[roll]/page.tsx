@@ -7,6 +7,7 @@ import React, { use, useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton';
 import { boolean } from 'zod'
 import { useParams } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
 
 type params = {
     roll: string
@@ -30,30 +31,47 @@ const Page = ({ params }: { params: Promise<params> }) => {
     const [message, setMessage] = useState<string>("");
     const router = useRouter();
 
-
+    const { toast } = useToast()
     const handleSelected = async () => {
 
         //call to interview[roll] of current candidate
         try {
             const response = await axios.get(`/api/selected/${oneCandidate?.roll}`)
-            if (response) {
+            if (response.data.status === true) {
                 //Only Success Message will be shown, not redirecting to any other pages as Next Button functionality is going to do the same.
+                toast({
+                    title: `Candidate Selected`,
+                    description: "Candidate Selected Successfully",
+                    
+                })
+            }
+            else{
+                toast({
+                    title: `Candidate Not Selected`,
+                    description: "Candidate Not Selected Successfully",
+                    variant: "destructive"
+                })
             }
 
         } catch (error) {
             // Error Message
+            toast({
+                title: `Candidate Not Selected`,
+                description: "Candidate Not Selected Successfully",
+                variant: "destructive"
+            })
         }
     }
 
     const handleNext = async () => {
-        console.log("Before - ",oneCandidate)
+        console.log("Before - ", oneCandidate)
         setIsLoading(true);
-        console.log("After - ",oneCandidate)
+        console.log("After - ", oneCandidate)
         // Handle Next button with a total of two funcitonalities.
         const url = `/api/getInterviewdOneCandidate/${oneCandidate?.domain}/${oneCandidate?.roll}`;
         try {
             const response = await axios.get(url);
-            console.log("Resonse- ",response?.data)
+            console.log("Resonse- ", response?.data)
             if (response) {
                 setOneCandidate(response.data as candidate);
                 setIsLoading(false);
@@ -77,7 +95,7 @@ const Page = ({ params }: { params: Promise<params> }) => {
     }, [])
 
     return (
-        <div className='w-full px-10 text-sm min-h-screen md:flex flex-wrap-reverse items-center justify-between p-0'>
+        <div className='w-full px-10 text-sm min-h-screen md:flex flex-wrap-reverse max-sm:items-end max-md:mt-4 md:-mt-10 items-center justify-between p-0'>
             <div className='md:w-1/2 w-full flex flex-col items-center justify-between gap-4'>
                 <div className='w-full text-slate-100 h-full bg-transparent backdrop-blur-lg border-mywidth border-gray-600 rounded-lg p-4 leading-10 drop-shadow-lg text-sm'>
                     {
@@ -92,6 +110,7 @@ const Page = ({ params }: { params: Promise<params> }) => {
                                 <h1 className='sm:flex items-center' >Resume Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
                                 <h1 className='sm:flex items-center' >LinkedIn Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
                                 <h1 className='sm:flex items-center' >GitHub Link - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
+                                <h1 className='sm:flex items-center' >Interview By - <span className="block w-48 h-5 bg-gray-600 rounded animate-pulse  sm:ml-4 "></span></h1>
                             </>
                         ) : (
                             <>

@@ -56,10 +56,10 @@ const page = ({ params }: { params: Promise<params> }) => {
   }
 
   return (
-    <div className='min-h-screen text-sm text-white flex flex-col gap-8 items-center justify-start mx-8 mt-8'>
+    <div className='min-h-screen text-sm text-white flex flex-col gap-8 items-center justify-start mx-10 mt-4 mb-2'>
 
       <div className='w-full flex flex-col items-center justify-start'>
-        <div className='w-full md:flex flex-wrap items-center justify-between gap-4 mb-4'>
+        <div className='w-full md:flex flex-wrap items-center justify-between gap-4 mb-2'>
 
           <div>
             <h1 className='text-lg text-bold'>ALL {domain.toUpperCase()} {"Present Candidates".toUpperCase()}</h1>

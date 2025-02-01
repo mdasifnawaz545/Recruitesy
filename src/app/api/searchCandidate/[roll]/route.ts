@@ -18,16 +18,12 @@ export async function GET(request: NextRequest) {
             return NextResponse.json(response)
         }
         else {
-            return NextResponse.json({
-                message: "Not Found",
-                status: false
-            })
+            return NextResponse.json({message:"Not found",
+                status:false})
         }
     } catch (error) {
-        return NextResponse.json({
-            message: "Not Found",
-            status: false
-        })
+        return NextResponse.json({message:"Not found",
+            status:false})
     }
 
 }

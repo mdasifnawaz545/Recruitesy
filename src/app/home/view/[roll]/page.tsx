@@ -48,7 +48,6 @@ const Page = ({ params }: { params: Promise<params> }) => {
         // Handle Next button with a total of two funcitonalities.
         const url = `/api/getSelectedOneCandidate/${oneCandidate?.domain}/${oneCandidate?.roll}`;
 
-
         try {
             const response = await axios.get(url);
             if (response) {
@@ -62,17 +61,14 @@ const Page = ({ params }: { params: Promise<params> }) => {
         } catch (error) {
             console.log("Error")
         }
-
-
     }
-
 
     useEffect(() => {
         fetchView();
     }, [])
 
     return (
-        <div className='w-full px-10 text-sm min-h-screen md:flex flex-wrap-reverse items-center justify-between p-0'>
+        <div className='w-full px-10 text-sm min-h-screen md:flex flex-wrap-reverse max-sm:items-end max-md:mt-4 md:-mt-10 items-center justify-between p-0'>
             <div className='md:w-1/2 w-full flex flex-col items-center justify-between gap-4'>
                 <div className='w-full text-slate-100 h-full bg-transparent backdrop-blur-lg border-mywidth border-gray-600 rounded-lg p-4 leading-10 drop-shadow-lg text-sm'>
                     {isLoading ? (

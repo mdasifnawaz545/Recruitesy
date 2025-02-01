@@ -50,9 +50,9 @@ const page = ({ params }: { params: Promise<params> }) => {
     return (
         <div className='min-h-screen  text-white flex flex-col gap-8 items-center justify-start mx-8 mt-8'>
             <div className='w-full flex flex-col items-center justify-center'>
-                <div className='w-full md:flex flex-col items-center md:justify-center justify-evenly'>
+                <div className='w-full md:flex flex-col items-start md:justify-center justify-evenly'>
                     <div>
-                    <h1 className='text-2xl text-bold'>ALL {resolvedParams.domain.toUpperCase()} {"Interviewed Candidates".toUpperCase()}</h1>
+                    <h1 className='text-lg text-bold'>ALL {resolvedParams.domain.toUpperCase()} {"Interviewed Candidates".toUpperCase()}</h1>
                     </div>
                     {/* <div className='w-full flex items-center p-0 mt-4 text-center justify-center'>
                         <Search />
@@ -64,7 +64,6 @@ const page = ({ params }: { params: Promise<params> }) => {
             <div className='w-full flex flex-col flex-wrap gap-2'>
                 {
                     (isLoading) ? (<div className='w-full h-1/2 flex items-center justify-center'><LoadingSpinner /></div>) : ((allCandidate) ? (allCandidate.map((el: candidate, index: number) => (<Link href={`/home/interviewPageView/${el.roll}`} key={index} ><CandidateCardWithOneButton buttonName={"View"} func={()=>{handleView(el.roll as string)}} name={el.name} roll={el.roll as unknown as number} ownClass={''} /></Link>))) : (message))
-
 
                 }
             </div>

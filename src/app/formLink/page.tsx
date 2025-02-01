@@ -17,19 +17,20 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import formSchema from "@/schemas/formSchema";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useToast } from '@/hooks/use-toast'
-import { Router } from "lucide-react";
 import { redirect } from "next/navigation"
+import { Loader2 } from "lucide-react";
 
 // import formSchemaDefaultValue from "@/constants/formData";   
 
 const page = ({ }) => {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     // If you do not make this component  as client component then it will give you a error as userForm is not a function.
 
@@ -62,21 +63,23 @@ const page = ({ }) => {
             isinterviewRunning: false,
             selected: false,
             selectedBy: "",
-            message: ""
+            message: " "
         },
     });
 
     const { toast } = useToast();
 
     const handleFormSubmission = async (data: z.infer<typeof formSchema>) => {
+        setIsLoading(true);
         // console.log(data);
-        const response = await axios.post("/api/addCandidate", data);
-        if (response) {
+        const response = await axios.post("/api/addCandidate", { data });
+        if (response.data.status) {
             toast({
                 title: "Form is Submitted",
                 description: "Your form is Submitted Successfully"
             });
-            redirect("/home/completed");
+            setIsLoading(false);
+            redirect("/successForm");
         }
         else {
             toast({
@@ -89,7 +92,7 @@ const page = ({ }) => {
 
 
     return (
-        <div className="w-full text-black min-h-screen flex items-center justify-center py-4">
+        <div className="w-full text-black min-h-screen flex items-center justify-center py-4 text-sm">
             <div className=" w-full md:w-1/2 px-8 md:px-0 mt-4">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleFormSubmission)} className="space-y-6">
@@ -349,7 +352,7 @@ const page = ({ }) => {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="bg-transparent border-[1px] border-gray-600 w-full hover:shadow-md hover:shadow-blue-400 h-8 text-slate-50 hover:duration-200">Submit</Button>
+                        <Button type="submit" className="bg-transparent border-[1px] border-gray-600 w-full hover:shadow-md hover:shadow-blue-400 h-8 text-slate-50 hover:duration-200">{(isLoading) ? <Loader2 /> : null}Submit</Button>
                     </form>
                 </Form>
 

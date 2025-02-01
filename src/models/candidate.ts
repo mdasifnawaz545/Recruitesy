@@ -113,7 +113,6 @@ const candidatesSchema: Schema<candidate> = new Schema({
     },
     message: {
         type: String,
-        required: true,
         default: ""
     },
 })
