@@ -34,7 +34,7 @@ const Search = ({ domain }: { domain: string }) => {
                 })
             }
         } catch (error) {
-            console.log("Request not proceed")
+            console.error("Request not proceed")
         }
 
     }
@@ -42,7 +42,7 @@ const Search = ({ domain }: { domain: string }) => {
         setCandidate(undefined);
     }
     const handleTakeInterviewed = async (domain: string, roll: string) => {
-        console.log("Handle Interview - ",roll , domain)
+ 
         redirect(`/home/interview/${domain}/${roll}`);
     }
     return (

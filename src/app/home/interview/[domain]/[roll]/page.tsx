@@ -27,7 +27,7 @@ const page = ({ params }: { params: Promise<myParams> }) => {
 
         //call to interview[roll] of current candidate
         try {
-            console.log(resolvedParams.roll)
+       
             const response = await axios.get(`/api/selected/${resolvedParams.roll}`)
             if (response) {
                 //Only Success Message will be shown, not redirecting to any other pages as Next Button functionality is going to do the same.
@@ -84,7 +84,7 @@ const page = ({ params }: { params: Promise<myParams> }) => {
         try {
             const response = await axios.get(`/api/callInterview/${resolvedParams.roll}`)
             setOneCandidate(response.data as candidate)
-            console.log("Response - ", response);
+            
             setIsLoading(false);
 
         } catch (error) {

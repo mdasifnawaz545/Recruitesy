@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
         await DBConnection();
         const allCandidate: candidate[] = await candidateModel.find();
         if (allCandidate) {
-            // console.log(allCandidate)
+            
             return NextResponse.json( allCandidate )
         }
     } catch (error) {

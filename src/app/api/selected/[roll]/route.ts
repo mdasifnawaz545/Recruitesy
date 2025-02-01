@@ -12,9 +12,9 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ message: "User is not Authenticated", status: false });
     }
     const roll = request.url.substring(request.url.lastIndexOf('/') + 1)
-    console.log(roll)
+
     const recruiterEmail = session?.user.email
-    console.log(recruiterEmail)
+
 
     try {
         const response = await candidateModel.findOneAndUpdate({ roll: roll }, { $set: { selected: true, selectedBy: recruiterEmail, interviewedBy: recruiterEmail, interviewed: true }, });

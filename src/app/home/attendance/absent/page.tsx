@@ -45,7 +45,7 @@ const page = () => {
 
     const handlePresent = async (roll: string) => {
         try {
-            console.log(roll)
+        
             const response = await axios.get(`/api/attendance/present/${roll}`)
             if (response) {
                 // setPresent(true)
@@ -80,7 +80,7 @@ const page = () => {
 
     }, [random])
 
-    console.log(allCandidate)
+    
 
     // Candidate card with one button impletation not two because there are two button inside that card and an inbuilt function is also attached with them.
 

@@ -12,8 +12,6 @@ const CandidateCard = ({ name, roll }: { name: string, roll: string, }) => {
 
     // We are here usnig the concept of nextjs is that, call the function or fetch the data in a component where it is used.
 
-    // console.log(present);
-    // console.log(absent);
     //Present API call not logic logic will be there inside the route.ts where you are calling to or where the API is redirecting you to.
 
     const handlePresent = async () => {

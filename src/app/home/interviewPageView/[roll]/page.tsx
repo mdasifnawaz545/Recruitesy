@@ -64,14 +64,14 @@ const Page = ({ params }: { params: Promise<params> }) => {
     }
 
     const handleNext = async () => {
-        console.log("Before - ", oneCandidate)
+        
         setIsLoading(true);
-        console.log("After - ", oneCandidate)
+        
         // Handle Next button with a total of two funcitonalities.
         const url = `/api/getInterviewdOneCandidate/${oneCandidate?.domain}/${oneCandidate?.roll}`;
         try {
             const response = await axios.get(url);
-            console.log("Resonse- ", response?.data)
+            
             if (response) {
                 setOneCandidate(response.data as candidate);
                 setIsLoading(false);
@@ -79,7 +79,6 @@ const Page = ({ params }: { params: Promise<params> }) => {
             }
             else {
                 console.log("Error")
-
             }
 
         } catch (error) {

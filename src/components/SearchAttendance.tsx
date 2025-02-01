@@ -19,7 +19,7 @@ const Search = () => {
     const handleSearch = async () => {
         try {
             const response = await axios.get(`/api/searchCandidate/${searchValue}`);
-            console.log(response)
+      
             if (response.data.status === false) {
                 toast({
                     title: `Candidate not found`,
@@ -36,7 +36,7 @@ const Search = () => {
 
             }
         } catch (error) {
-            console.log("Request not proceed")
+            console.error("Request not proceed")
         }
 
     }

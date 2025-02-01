@@ -14,11 +14,11 @@ import Link from 'next/link'
 
 const page = () => {
     const session = useSession();
-    console.log(session.data)
+   
     const currentUser: User = session?.data?.user as User;
     const username: string = currentUser?.name as string;
     //const session=useSession();
-    console.log("Frontend Authentication")
+    
 
     const handleFormLink = () => {
         //Use origin of the deployed one once it is deployed.

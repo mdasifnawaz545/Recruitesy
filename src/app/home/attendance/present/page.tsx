@@ -19,8 +19,7 @@ const page = () => {
     try {
 
       const response = await axios.get("/api/attendies/presenties");
-      console.log("My Response")
-      console.log("Frontend Response - ", response)
+   
       if (response) {
         setAllCandidate(response.data as unknown as candidate[])
         setIsLoading(false);
@@ -62,7 +61,7 @@ const page = () => {
 
   }, [random])
 
-  console.log(allCandidate)
+
 
   return (
     <div className='min-h-screen  text-sm flex text-white flex-col gap-8 items-center justify-start mx-8 m-4 mb-2'>

@@ -43,7 +43,6 @@ export default function Home() {
 
   const handleGithubLogin = () => {
     setGithubState(true);
-    console.log("login with github")
     setGithubState(false);
 
   }

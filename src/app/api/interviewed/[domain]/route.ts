@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ message: "User is not Authenticated", status: false });
     }
     const domain = request.url.substring(request.url.lastIndexOf('/') + 1)
-    console.log(request)
+    
     try {
         await DBConnection();
         const response: candidate[] = await candidateModel.find({ $and: [{ domain: domain }, { interviewed: true }, { selected: false }] });

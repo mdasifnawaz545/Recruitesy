@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ message: "User is not Authenticated", status: false });
     }
     const roll = request.url.substring(request.url.lastIndexOf('/') + 1)
-    console.log(roll)
+    
     try {
         await DBConnection();
         const response = await candidateModel.findOneAndUpdate({ roll: roll }, { present: true });

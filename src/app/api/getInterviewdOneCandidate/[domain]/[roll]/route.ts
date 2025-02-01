@@ -12,8 +12,7 @@ export async function GET(request: NextRequest) {
     const roll = request.url.substring(request.url.lastIndexOf('/') + 1);
     const urlAfterExtractingRoll = request.url.substring(0, request.url.lastIndexOf('/'));
     const domain = urlAfterExtractingRoll.substring(urlAfterExtractingRoll.lastIndexOf('/') + 1);
-    console.log("Roll is : ", roll)
-    console.log("Doamin is : ", domain)
+    
 
     try {
         await DBConnection();

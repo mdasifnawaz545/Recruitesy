@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
 
     const resolved = await request.json();
     const { data } = resolved;
-    console.log("Data is - ", data)
+    
     let candidate: candidate = data;
 
     try {

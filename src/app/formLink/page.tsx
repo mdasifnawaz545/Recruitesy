@@ -71,7 +71,7 @@ const page = ({ }) => {
 
     const handleFormSubmission = async (data: z.infer<typeof formSchema>) => {
         setIsLoading(true);
-        // console.log(data);
+        
         const response = await axios.post("/api/addCandidate", { data });
         if (response.data.status) {
             toast({

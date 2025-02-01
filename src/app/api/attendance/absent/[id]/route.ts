@@ -12,12 +12,12 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ message: "User is not Authenticated", status: false });
     }
     const id = request.url.substring(request.url.lastIndexOf('/') + 1)
-    console.log("ID is : ", id)
+
     try {
         await DBConnection();
         try {
             const response = await candidateModel.findOneAndUpdate({ roll: id }, { $set: { present: false } })
-            console.log(response)
+          
             if (response) {
                 return NextResponse.json({
                     message: "Marked as Absent",

@@ -13,9 +13,7 @@ export async function POST(request: NextRequest) {
     const roll = request.url.substring(request.url.lastIndexOf('/') + 1);
     const requestJson = await request.json();
     const { message } = requestJson;
-    console.log("The Message is ");
-    console.log("Roll - ", roll)
-
+   
     const recruiterEmail = session?.user.email
 
 

@@ -17,14 +17,14 @@ const page = () => {
     setIsLoading(true);
     try {
       const response = await fetch("/api/getCandidate");
-      console.log("My Response");
+    
 
       if (!response.ok) {
         throw new Error("Failed to fetch candidates");
       }
 
       const data = await response.json();
-      console.log("Frontend Response - ", data);
+     
 
       setAllCandidate(data as unknown as candidate[]);
       setIsLoading(false);
