@@ -1,4 +1,3 @@
-import exp from "constants";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import  {authOptions}  from "./options";
 
