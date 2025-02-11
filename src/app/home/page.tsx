@@ -22,7 +22,7 @@ const page = () => {
 
     const handleFormLink = () => {
         //Use origin of the deployed one once it is deployed.
-        let clip = "https://recruitesy.vercel.app/home/formLink"
+        let clip = "https://recruitesy.vercel.app/formLink"
         window.navigator.clipboard.writeText(clip);
         toast({
             title: "Copied",
