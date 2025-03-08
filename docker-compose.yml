@@ -1,0 +1,25 @@
+services:
+  recruitesy:
+    build: ./
+    ports:
+      - 5173:5173
+    networks:
+      - recruitesyNetwork
+    container_name: recruitesyContainer01
+    # environment:
+    #  - name:value
+     # this is for docker compose watch mode
+    # anything mentioned under develop will be watched for changes by docker compose watch and it will perform the action mentioned
+    # It is exactly same as the mount binding of a file in python but in development this is the way to do that i.e linking the files of the local machine with the files of the container for any changes.
+    develop:
+       # we specify the files to watch for changes
+      watch:
+        - path: ./package.json
+          action: rebuild
+           #It will simply monitor for any changes in the respected target folder and sync the entire changes with the container in real time.
+        - path: ./
+          target: /src
+          action: sync
+networks:
+  recruitesyNetwork:
+    driver: bridge # it is used to explicitly defines the driver of the network to the bridge network.
